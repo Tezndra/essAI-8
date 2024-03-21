@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>essAi</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            background: linear-gradient(90deg, #0d131a, #4CAF50);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+        
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(90deg, #000000, #000000);
+            color: #fff;
+            opacity: 0.85;
+            z-index: 100;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+        
+        .menu-items li {
+            list-style: none;
+            margin-left: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .logo {
+            font-size: 2.3rem;
+            letter-spacing: -1px;
+            /* Adjust this value as needed */
+        }
+        
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa;
+            width: 100%;
+            height: 60px;
+            background-color: #000;
+            color: #fff;
+            opacity: 0.85;
+            z-index: 100;
+        }
+        
+        .menu-items li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .menu-items li a:hover {
+            color: #ccc;
+        }
+        
+        .home_section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-form {
+            background-color: #ffffff00;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.302);
+            padding: 20px;
+            border-radius: 12px;
+            width: 700px;
+            height: 500px;
+            overflow: hidden;
+            animation: fadeInUp 1s ease;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff2f2;
+        }
+        
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+        }
+        
+        .form-group button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        
+        #about_section {
+            min-height: 30vh;
+            background: linear-gradient(260deg, #000 green, #000 black);
+            padding: 20px;
+        }
+        
+        #about_section h2 {
+            margin-bottom: 10px;
+            color: rgb(0, 0, 0);
+        }
+        
+        #about_section p {
+            text-align: justify;
+        }
+        
+        #faq_section {
+            padding: 20px;
+        }
+        
+        #faq_section h2 {
+            color: rgb(0, 0, 0);
+        }
+        
+        #faq_section h3 {
+            padding-top: 20px;
+            color: rgb(179, 70, 3);
+        }
+        
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            animation: videoAnimation 30s infinite;
+        }
+        
+        @keyframes videoAnimation {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        #evaluation-results {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #evaluation-results h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .result-item {
+            margin-bottom: 10px;
+        }
+        
+        .result-item label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .result-item span {
+            display: block;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .contact-form h2 {
+            text-align: center;
+            font-family: 'Petrov Sans', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .form-group input[type="text"]#essay_title {
+            height: 40px;
+        }
+        /* New styles for Meet the Developers section */
+        
+        .developer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .developer img {
+            width: 150px;
+            /* Adjust size as needed */
+            border-radius: 50%;
+            /* Makes the image round */
+            border: 3px solid #fff;
+            /* Adds a white border around the image */
+            margin-bottom: 10px;
+            /* Adds some space between the image and the developer name */
+        }
+        
+        .developer p {
+            color: #fff;
+            /* Sets the color of the developer name */
+            font-weight: bold;
+            /* Makes the developer name bold */
+        }
+    </style>
+</head>
+
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="YOUR_ANIMATED_VIDEO_SOURCE_HERE" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <div class="logo">ess Ai</div>
+            <ul class="menu-items">
+                <li><a href="#home_section">Home</a></li>
+                <li><a href="#about_section">About</a></li>
+                <li><a href="#faq_section" id="faq-tab">FAQ</a></li>
+                <li><a href="#bottom_section">Developers</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="home_section" id="home_section">
+        <div class="container">
+            <div class="contact-form">
+                <h2>Essay Evaluation</h2>
+                <form id="evaluation-form" action="/evaluate" method="POST">
+                    <div class="form-group">
+                        <label for="essay_title">Title:</label>
+                        <input type="text" id="essay_title" name="essay_title" placeholder="Enter Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="essay">Write Essay:</label>
+                        <textarea id="essay" name="essay" rows="14" placeholder="Write your essay here" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Evaluate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="about_section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About essAi</h2>
+                <p>
+                    In the realm of education, the demand for efficient and effective feedback mechanisms and grading systems has never been greater. With the exponential growth of online education platforms, virtual classrooms, and distance learning, educators are facing
+                    unprecedented challenges in providing timely and personalized feedback to students while also managing the demands of grading assignments efficiently. In response to these challenges, automated essay feedback generators and grading
+                    systems have emerged as innovative solutions, leveraging advancements in artificial intelligence and natural language processing.
+                </p>
+                <!-- Add more content as needed -->
+            </div>
+        </div>
+    </div>
+
+    <section id="faq_section">
+        <div class="container">
+            <div class="faq-content">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3>1. What is essAi?</h3>
+                    <p>essAi is an automated essay evaluation and grading system powered by artificial intelligence and natural language processing.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>2. How does essAi work?</h3>
+                    <p>essAi uses advanced algorithms to analyze essays based on various criteria such as grammar, coherence, and relevance to the topic.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>3. Can essAi provide feedback on academic essays?</h3>
+                    <p>Yes, essAi is designed to provide feedback on academic essays across different subjects and disciplines.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>4. Is essAi suitable for educational institutions?</h3>
+                    <p>essAi can be used by educational institutions to streamline the grading process and provide valuable feedback to students.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>5. How accurate is essAi's evaluation?</h3>
+                    <p>essAi's evaluation accuracy depends on various factors, but it strives to provide reliable feedback to users.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>6. Can essAi detect plagiarism?</h3>
+                    <p>essAi can help identify potential instances of plagiarism by comparing essays against a database of existing content.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>7. Is essAi suitable for language learning?</h3>
+                    <p>essAi can be a valuable tool for language learners to improve their writing skills and receive feedback on their compositions.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>8. How secure is essAi?</h3>
+                    <p>essAi prioritizes user privacy and data security, implementing measures to safeguard sensitive information.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>9. Can essAi be integrated with learning management systems?</h3>
+                    <p>Yes, essAi offers integration options with popular learning management systems for seamless implementation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>10. How can I get started with essAi?</h3>
+                    <p>To get started with essAi, simply sign up for an account on our website and explore the features available to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bottom_section">
+        <div class="container">
+            <div class="developers-content"><br><br>
+                <h2>Developed by:</h2><br>
+                <!-- Developer 1 -->
+                <div class="developer">
+                    <p class="developer-name">Abhiram kandregula </p>
+                </div>
+                <!-- Developer 2 -->
+                <div class="developer">
+                    <p class="developer-name">Konreddy Yaswanth</p>
+                </div>
+                <!-- Developer 3 -->
+                <div class="developer">
+                    <p class="developer-name">Pratham Kashyap</p>
+                </div>
+                <!-- Developer 4 -->
+                <div class="developer">
+                    <p class="developer-name">Tejendra Kadiyala</p>
+                </div>
+                <!-- Developer 5 -->
+                <div class="developer">
+                    <p class="developer-name">Sanjay Goud</p>
+                </div>
+                <!-- Add more developers as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Include your shared JavaScript code -->
+
+</body>
+
+</html>
