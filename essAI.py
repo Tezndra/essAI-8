@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify, render_template
 import openai
-import openai.error
+import os
+from dotenv import load_dotenv
 import traceback
 
+load_dotenv()
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = os.getenv("API_KEY")
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -57,4 +59,13 @@ def evaluate_text():
         return jsonify({'error': 'Internal server error occurred. Please try again later.'}), 500
 
 if __name__ == '__main__':
+    # Run Flask using Gunicorn
+    # Use the format "module_name:app" to specify the Flask app
+    # Example: gunicorn myapp:app
+    # Replace "myapp" with the name of your Python module
+    # Replace "app" with the name of your Flask instance
+    # Adjust host and port as needed
+    gunicorn_command = "gunicorn -b 0.0.0.0:5000 app:app"
+    os.system(gunicorn_command)
+
     app.run(debug=True)
